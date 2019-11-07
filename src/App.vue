@@ -9,9 +9,10 @@
 </template>
 
 <script>
+
 export default {
   mounted() {
-    this.$store.dispatch('getProducts');
+    this.$store.dispatch('products/getProducts');
   },
 };
 </script>
