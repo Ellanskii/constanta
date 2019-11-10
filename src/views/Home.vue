@@ -1,10 +1,14 @@
 <template>
-  <div>
-    <ProductItem
-      v-for="product in products"
-      :key="product.name"
-      :product="product"
-    />
+  <div class="container">
+    <div v-if="products.length && productsToShow.length">
+      <ProductItem
+        v-for="product in productsToShow"
+        :key="product.name"
+        :product="product"
+      />
+    </div>
+    <p class="title" v-else-if="products.length">Nothing found(</p>
+    <p class="title" v-else>Loading...</p>
   </div>
 </template>
 
@@ -18,6 +22,15 @@ export default {
     ProductItem,
   },
   computed: {
+    productsToShow() {
+      let productsToShow = this.products;
+      if (this.$route.query.search) {
+        const SEARCH_QUERY = this.$route.query.search.toLowerCase();
+        // eslint-disable-next-line max-len
+        productsToShow = productsToShow.filter(product => product.name.toLowerCase().includes(SEARCH_QUERY));
+      }
+      return productsToShow;
+    },
     ...mapGetters({
       products: 'products/getProducts',
     }),
