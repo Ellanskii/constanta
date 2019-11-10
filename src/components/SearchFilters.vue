@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="filters">
     <input
       @input="search($event.target.value)"
       type="text"
@@ -27,3 +27,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .filters {
+    margin: 1rem 0;
+  }
+</style>

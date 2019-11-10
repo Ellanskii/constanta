@@ -1,7 +1,11 @@
 <template>
   <nav class="navbar is-fixed-top">
     <div class="container">
-      <div class="navbar-brand"></div>
+      <div class="navbar-brand">
+        <router-link to="/">
+          <img src="@/assets/logo.svg" width="56" height="56">
+        </router-link>
+      </div>
       <div class="navbar-end">
         <div class="navbar-item">
           <router-link to="/cart" class="button is-primary" :data-badge="count">Cart</router-link>
