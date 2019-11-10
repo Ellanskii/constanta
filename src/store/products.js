@@ -2,10 +2,14 @@ import axios from 'axios';
 
 const getters = {
   getProducts: state => state.products,
+  isReadyForUpdate: state => state.isReadyForUpdate,
 };
 
 const actions = {
   async getProducts({ commit }, pagination = false) {
+    // апиха может и умереть, не трогаем её, пока не порешаем эту попытку
+    commit('SET_AUTO_UPDATES', false);
+
     let products = [];
     let pagesCount = 1;
     function getPartialData(page = 1) {
@@ -42,6 +46,7 @@ const actions = {
     }
 
     commit('SET_PRODUCTS', products);
+    commit('SET_AUTO_UPDATES', true);
   },
 };
 
@@ -49,10 +54,14 @@ const mutations = {
   SET_PRODUCTS(state, products) {
     state.products = products;
   },
+  SET_AUTO_UPDATES(state, value) {
+    state.isReadyForUpdate = value;
+  },
 };
 
 const state = {
   products: [],
+  isReadyForUpdate: true,
 };
 
 export default {

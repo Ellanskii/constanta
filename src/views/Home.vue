@@ -36,7 +36,33 @@ export default {
     },
     ...mapGetters({
       products: 'products/getProducts',
+      isReadyForUpdate: 'products/isReadyForUpdate',
     }),
+  },
+  methods: {
+    updateProducts() {
+      this.$store.dispatch('products/getProducts');
+    },
+  },
+  mounted() {
+    // получаем товары
+    this.updateProducts();
+    // повторяем это периодически, если позволяет стор
+    // не самый изящный путь, стоило бы и в корзине инфу обновлять например
+    // но мне уже лень
+    let updatesCount = 0;
+    window.autoUpdate = setInterval(() => {
+      updatesCount += 1;
+      console.log(`updates: ${updatesCount}`);
+      if (this.isReadyForUpdate) {
+        this.updateProducts();
+      }
+    }, 60000);
+  },
+  beforeRouteLeave(to, from, next) {
+    // не забываем убить автообновление при уходе
+    clearInterval(window.autoUpdate);
+    next();
   },
 };
 </script>
