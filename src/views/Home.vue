@@ -50,10 +50,7 @@ export default {
     // повторяем это периодически, если позволяет стор
     // не самый изящный путь, стоило бы и в корзине инфу обновлять например
     // но мне уже лень
-    let updatesCount = 0;
     window.autoUpdate = setInterval(() => {
-      updatesCount += 1;
-      console.log(`updates: ${updatesCount}`);
       if (this.isReadyForUpdate) {
         this.updateProducts();
       }
