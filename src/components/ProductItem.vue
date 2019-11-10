@@ -2,7 +2,11 @@
   <details :open="isOpen">
     <summary>{{ product.name }}</summary>
     <div>
-      <button type="button">Добавить в корзину</button>
+      <button
+        type="button"
+        @click="addToCart(product)"
+        :disabled="!parseInt(product.cost_in_credits)"
+      >Добавить в корзину</button>
     </div>
   </details>
 </template>
@@ -18,6 +22,11 @@ export default {
     isOpen: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    addToCart(product) {
+      this.$store.dispatch('cart/addToCart', product);
     },
   },
 };
