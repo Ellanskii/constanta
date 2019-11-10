@@ -29,10 +29,10 @@
         <div class="card-footer-item">
           <button
             type="button"
-            class="button is-primary"
+            class="button is-primary is-fullwidth"
             @click="addToCart(product)"
             :disabled="!parseInt(product.cost_in_credits)"
-          >Добавить в корзину</button>
+          >Add to cart</button>
         </div>
       </div>
     </div>

@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <NavBar />
-    <router-view/>
+    <main>
+      <router-view/>
+    </main>
+    <footer class="footer">
+      <div class="container"></div>
+    </footer>
   </div>
 </template>
 
@@ -17,3 +22,15 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  #app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .footer {
+    margin-bottom: 0;
+    margin-top: auto;
+  }
+</style>
