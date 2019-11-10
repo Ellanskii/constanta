@@ -22,20 +22,42 @@
               type="button"
               class="button is-danger"
               @click="remove(product.name)"
-            >Delete</button>
+            >
+              Delete
+            </button>
           </td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
           <td colspan="5">
-            <button type="button" class="button is-primary" @click="toggleModal">Purchase</button>
+            <button
+              type="button"
+              class="button is-primary is-fullwidth"
+              @click="toggleModal"
+            >
+              <span
+                >Purchase for
+                <strong>{{ total }}</strong> credits</span
+              >
+            </button>
           </td>
         </tr>
       </tfoot>
     </table>
     <p v-else class="subtitle">is empty</p>
-    <OrderForm />
+    <div class="modal" :class="{'is-active': isModalOpen}">
+      <div class="modal-background" @click="toggleModal"></div>
+      <div class="modal-content box">
+        <OrderForm />
+      </div>
+      <button
+        class="modal-close is-large"
+        aria-label="close"
+        type="button"
+        @click="toggleModal"
+      ></button>
+    </div>
   </div>
 </template>
 
@@ -55,6 +77,7 @@ export default {
   computed: {
     ...mapGetters({
       products: 'cart/getProducts',
+      total: 'cart/getTotal',
     }),
   },
   methods: {
