@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .has-navbar-fixed-top {
+    padding-top: 4rem !important;
+  }
   [data-badge] {
     position: relative;
     &::after {
