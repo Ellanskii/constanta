@@ -4,6 +4,7 @@ const getters = {
   getTotal: state => state.products.reduce((subtotal, product) => {
     return subtotal + product.cost * product.count;
   }, 0),
+  getProductsCount: state => state.products.reduce((acc, product) => acc + product.count, 0),
 };
 
 const actions = {

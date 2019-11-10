@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <SearchFilters />
     <div v-if="products.length && productsToShow.length">
       <ProductItem
         v-for="product in productsToShow"
@@ -15,11 +16,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import ProductItem from '@/components/ProductItem.vue';
+import SearchFilters from '@/components/SearchFilters.vue';
 
 export default {
   name: 'home',
   components: {
     ProductItem,
+    SearchFilters,
   },
   computed: {
     productsToShow() {
