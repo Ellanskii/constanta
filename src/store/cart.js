@@ -8,14 +8,6 @@ const getters = {
 };
 
 const actions = {
-//   async getProducts({ commit }) {
-//     await axios
-//       .get('https://swapi.co/api/starships')
-//       .then((res) => {
-//         commit('SET_PRODUCTS', res.data.results);
-//       })
-//       .catch();
-//   },
   addToCart({ commit }, product) {
     commit('ADD_PRODUCT', product);
   },
@@ -34,6 +26,15 @@ const mutations = {
       };
       state.products.push(newProduct);
     }
+  },
+  DELETE_PRODUCT(state, name) {
+    const productToRemoveIndex = state.products.findIndex(product => product.name === name);
+    if (productToRemoveIndex >= 0) {
+      state.products.splice(productToRemoveIndex, 1);
+    }
+  },
+  CLEAR_CART(state) {
+    state.products = [];
   },
 };
 

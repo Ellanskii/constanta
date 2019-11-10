@@ -12,8 +12,10 @@
       <div class="card-content">
         <table class="table is-fullwidth is-bordered is-striped">
           <thead>
-            <th>Property</th>
-            <th>Value</th>
+            <tr>
+              <th>Property</th>
+              <th>Value</th>
+            </tr>
           </thead>
           <tbody>
             <tr v-for="(value, name, index) in product" :key="index">
