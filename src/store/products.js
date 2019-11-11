@@ -1,8 +1,10 @@
 import axios from 'axios';
+import uniq from 'lodash-es/uniq';
 
 const getters = {
   getProducts: state => state.products,
   isReadyForUpdate: state => state.isReadyForUpdate,
+  getProductTypes: state => state.productTypes,
 };
 
 const actions = {
@@ -57,11 +59,17 @@ const mutations = {
   SET_AUTO_UPDATES(state, value) {
     state.isReadyForUpdate = value;
   },
+  SET_TYPE_FILTER(state, { products, property }) {
+    state.productTypes = uniq(
+      products.map(product => product[property]),
+    );
+  },
 };
 
 const state = {
   products: [],
   isReadyForUpdate: true,
+  productTypes: [], // фильтр по свойству
 };
 
 export default {

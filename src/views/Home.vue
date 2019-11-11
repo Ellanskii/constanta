@@ -32,6 +32,10 @@ export default {
         // eslint-disable-next-line max-len
         productsToShow = productsToShow.filter(product => product.name.toLowerCase().includes(SEARCH_QUERY));
       }
+      if (this.$route.query.class) {
+        const CLASS_QUERY = this.$route.query.class;
+        productsToShow = productsToShow.filter(product => product.starship_class === CLASS_QUERY);
+      }
       return productsToShow;
     },
     ...mapGetters({
@@ -47,7 +51,11 @@ export default {
   mounted() {
     // получаем товары
     this.updateProducts();
-    // повторяем это периодически, если позволяет стор
+
+    // фильтр по типу корабля
+    this.$store.commit('products/SET_TYPE_FILTER', { products: this.products, property: 'starship_class' });
+
+    // повторяем получение периодически, если позволяет стор
     // не самый изящный путь, стоило бы и в корзине инфу обновлять например
     // но мне уже лень
     window.autoUpdate = setInterval(() => {
