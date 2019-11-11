@@ -2,9 +2,12 @@
   <nav class="navbar is-fixed-top">
     <div class="container">
       <div class="navbar-brand">
-        <router-link to="/">
+        <router-link to="/" class="navbar-item">
           <img src="@/assets/logo.svg" width="56" height="56">
         </router-link>
+        <a class="navbar-item is-size-3" href="https://github.com/Ellanskii/constanta">
+          <FaIcon :icon="['fab', 'github']"/>
+        </a>
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
@@ -44,5 +47,8 @@ export default {
       border-radius: 1rem;
       padding: 0 0.5rem;
     }
+  }
+  .navbar-item img {
+    max-height: 56px !important;
   }
 </style>
