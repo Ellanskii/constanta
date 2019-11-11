@@ -31,7 +31,7 @@ const actions = {
         pagesCount = Math.ceil(data.count / 10);
         products = products.concat(data.results);
       })
-      .catch(console.error);
+      .catch();
 
     if (!pagination || pagesCount === 1) { // Не все товары уместились в один запрос
       const API_CALLS = [];
@@ -42,7 +42,7 @@ const actions = {
         responses.forEach((response) => {
           products = products.concat(response.results);
         });
-      }).catch(console.error);
+      }).catch();
     }
 
     commit('SET_PRODUCTS', products);
