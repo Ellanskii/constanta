@@ -27,14 +27,38 @@ export default {
   computed: {
     productsToShow() {
       let productsToShow = this.products;
+      // фильтр по названию
       if (this.$route.query.search) {
         const SEARCH_QUERY = this.$route.query.search.toLowerCase();
         // eslint-disable-next-line max-len
         productsToShow = productsToShow.filter(product => product.name.toLowerCase().includes(SEARCH_QUERY));
       }
+      // фильтр по классу корабля
       if (this.$route.query.class) {
         const CLASS_QUERY = this.$route.query.class;
         productsToShow = productsToShow.filter(product => product.starship_class === CLASS_QUERY);
+      }
+      // сортировки
+      if (this.$route.query.sort) {
+        const SORTING = this.$route.query.sort;
+        let sorting;
+        switch (SORTING) {
+          case 'cost_up':
+            sorting = (a, b) => a.cost_in_credits - b.cost_in_credits;
+            break;
+          case 'cost_down':
+            sorting = (a, b) => b.cost_in_credits - a.cost_in_credits;
+            break;
+          case 'hyperdrive_up':
+            sorting = (a, b) => a.hyperdrive_rating - b.hyperdrive_rating;
+            break;
+          case 'hyperdrive_down':
+            sorting = (a, b) => b.hyperdrive_rating - a.hyperdrive_rating;
+            break;
+          default:
+            break;
+        }
+        productsToShow = productsToShow.sort(sorting);
       }
       return productsToShow;
     },
