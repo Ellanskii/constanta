@@ -75,10 +75,6 @@ export default {
   mounted() {
     // получаем товары
     this.updateProducts();
-
-    // фильтр по типу корабля
-    this.$store.commit('products/SET_TYPE_FILTER', { products: this.products, property: 'starship_class' });
-
     // повторяем получение периодически, если позволяет стор
     // не самый изящный путь, стоило бы и в корзине инфу обновлять например
     // но мне уже лень

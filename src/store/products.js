@@ -48,6 +48,7 @@ const actions = {
     }
 
     commit('SET_PRODUCTS', products);
+    commit('SET_TYPE_FILTER', { products, property: 'starship_class' });
     commit('SET_AUTO_UPDATES', true);
   },
 };
